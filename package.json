@@ -1,0 +1,28 @@
+{
+  "name": "udalicebot",
+  "version": "1.0.0",
+  "description": "UDMath discord bot for managing the server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janahmedprg/UDAliceBot.git"
+  },
+  "keywords": [
+    "discordbot"
+  ],
+  "author": "Jan Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janahmedprg/UDAliceBot/issues"
+  },
+  "homepage": "https://github.com/janahmedprg/UDAliceBot#readme",
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.42.0"
+  }
+}
