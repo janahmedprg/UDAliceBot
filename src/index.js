@@ -6,6 +6,7 @@ const { token } = require("../config.json");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
+client.selectMenus = new Collection();
 
 const folderPath = path.join(__dirname, "functions");
 const functionsFiles = fs
@@ -18,4 +19,5 @@ for (const file of functionsFiles) {
 
 client.handleCommands();
 client.handleEvents();
+client.handleComponents();
 client.login(token);
