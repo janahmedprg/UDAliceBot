@@ -8,6 +8,9 @@ module.exports = {
     );
     if (!roles) return;
     interaction.member.roles.add(roles);
-    await interaction.reply("Your selected classes has been assigned to you!");
+    await interaction.reply({
+      content: "Your selected classes have been assigned to you!",
+      ephemeral: true,
+    });
   },
 };

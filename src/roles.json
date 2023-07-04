@@ -1,0 +1,18 @@
+{
+  "classes": [
+    { "name": "MATH 114", "color": "03A9F4" },
+    { "name": "MATH 115", "color": "03A9F4" },
+    { "name": "MATH 241", "color": "03A9F4" },
+    { "name": "MATH 210", "color": "03A9F4" },
+    { "name": "MATH 242", "color": "03A9F4" },
+    { "name": "MATH 243", "color": "03A9F4" },
+    { "name": "MATH 245", "color": "03A9F4" },
+    { "name": "MATH 350", "color": "03A9F4" },
+    { "name": "MATH 315", "color": "03A9F4" },
+    { "name": "MATH 308", "color": "03A9F4" },
+    { "name": "MATH 349", "color": "03A9F4" },
+    { "name": "MATH 426", "color": "03A9F4" },
+    { "name": "MATH 205", "color": "03A9F4" },
+    { "name": "MATH 010", "color": "03A9F4" }
+  ]
+}
