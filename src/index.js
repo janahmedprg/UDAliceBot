@@ -7,6 +7,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
 client.selectMenus = new Collection();
+client.userLevels = new Discord.Collection();
 
 const folderPath = path.join(__dirname, "functions");
 const functionsFiles = fs
