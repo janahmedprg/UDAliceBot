@@ -1,9 +1,18 @@
+const fs = require("fs");
+
 module.exports = {
   data: {
-    name: `rolesSelect`,
+    name: `rolesSelect_0`,
   },
   async execute(interaction) {
+    const rawData = await fs.promises.readFile("src/roles.json", "utf8");
+    const jsonData = JSON.parse(rawData);
+
+    const secondChunk = jsonData["classes"].slice(25);
     const currRole = interaction.member.roles.cache;
+    var setRoles = currRole
+      .filter((role) => secondChunk.some((r) => r.name === role.name))
+      .map((role) => role);
     const filteredRoles = currRole.filter(
       (role) => !role.name.includes("MATH")
     );
@@ -16,7 +25,6 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-    var setRoles = [];
     filteredRoles.forEach((role) => {
       setRoles.push(role);
     });

@@ -20,6 +20,13 @@ const createChannel = async (channelData) => {
     console.log(`Started refreshing roles.`);
 
     const currRoles = await rest.get(Routes.guildRoles(guildId));
+
+    const categories = await rest.get(Routes.guildChannels(guildId));
+
+    const categoryNames = categories
+      .filter((channel) => channel.type === 4)
+      .map((category) => category.name);
+
     const filteredRoles = currRoles.filter((role) =>
       role.name.includes("MATH")
     );
@@ -32,7 +39,12 @@ const createChannel = async (channelData) => {
       }
       return 0;
     });
-    filteredRoles.forEach(async (role) => {
+
+    const filteredNewRoles = filteredRoles.filter(
+      (newRole) => !categoryNames.some((category) => newRole.name === category)
+    );
+
+    filteredNewRoles.forEach(async (role) => {
       const categoryData = {
         name: role.name,
         type: 4,
