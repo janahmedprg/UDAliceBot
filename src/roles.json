@@ -35,6 +35,12 @@
     { "name": "MATH 529", "color": "03A9F4" },
     { "name": "MATH 540", "color": "03A9F4" },
     { "name": "MATH 630", "color": "03A9F4" },
-    { "name": "MATH 688", "color": "03A9F4" }
+    { "name": "MATH 688", "color": "03A9F4" } 
+  ],
+  "clubs":
+  [
+    { "name": "CPC", "color": "FFD200" },
+    { "name": "Math Club", "color": "FFD200" },
+    { "name": "Putnam Prep", "color": "FFD200" }
   ]
 }

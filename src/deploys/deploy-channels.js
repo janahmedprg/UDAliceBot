@@ -1,5 +1,6 @@
 const { REST, Routes } = require("discord.js");
 const { guildId, token } = require("../../config.json");
+const fs = require("fs");
 
 // Construct and prepare an instance of the REST module
 const rest = new REST().setToken(token);
@@ -27,9 +28,18 @@ const createChannel = async (channelData) => {
       .filter((channel) => channel.type === 4)
       .map((category) => category.name);
 
-    const filteredRoles = currRoles.filter((role) =>
-      role.name.includes("MATH")
-    );
+    const rawData = await fs.promises.readFile("src/roles.json", "utf8");
+    const jsonData = JSON.parse(rawData);
+
+    const clubs = jsonData["clubs"];
+
+    const filteredRoles = currRoles
+      .filter(
+        (role) =>
+          role.name.includes("MATH") || clubs.some((r) => r.name === role.name)
+      )
+      .map((role) => role);
+
     filteredRoles.sort((a, b) => {
       if (a.name < b.name) {
         return -1;
@@ -65,23 +75,42 @@ const createChannel = async (channelData) => {
       console.log("Private Category created:", category.id);
 
       const subChannels = ["general", "homework", "project"];
-
-      for (const channelName of subChannels) {
-        const channelData = {
-          name: channelName,
-          type: 0,
+      const subChannelsClubs = ["general", "resources", "events", "off-topic"];
+      if (role.name.includes("MATH")) {
+        for (const channelName of subChannels) {
+          const channelData = {
+            name: channelName,
+            type: 0,
+            parent_id: category.id,
+          };
+          const channel = await createChannel(channelData);
+          console.log("Sub-channel created:", channel.name);
+        }
+        const voiceChannelData = {
+          name: "voice",
+          type: 2,
           parent_id: category.id,
         };
-        const channel = await createChannel(channelData);
-        console.log("Sub-channel created:", channel.name);
+        const voiceChannel = await createChannel(voiceChannelData);
+        console.log("Sub-channel created:", voiceChannel.name);
+      } else {
+        for (const channelName of subChannelsClubs) {
+          const channelData = {
+            name: channelName,
+            type: 0,
+            parent_id: category.id,
+          };
+          const channel = await createChannel(channelData);
+          console.log("Sub-channel created:", channel.name);
+        }
+        const voiceChannelData = {
+          name: "voice",
+          type: 2,
+          parent_id: category.id,
+        };
+        const voiceChannel = await createChannel(voiceChannelData);
+        console.log("Sub-channel created:", voiceChannel.name);
       }
-      const voiceChannelData = {
-        name: "voice",
-        type: 2,
-        parent_id: category.id,
-      };
-      const voiceChannel = await createChannel(voiceChannelData);
-      console.log("Sub-channel created:", voiceChannel.name);
     });
   } catch (error) {
     // And of course, make sure you catch and log any errors!

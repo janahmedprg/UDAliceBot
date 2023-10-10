@@ -29,7 +29,10 @@ const rest = new REST().setToken(token);
       try {
         const jsonData = JSON.parse(data);
         for (const key in jsonData) {
-          if (key === "classes" && Array.isArray(jsonData[key])) {
+          if (
+            (key === "classes" || key === "clubs") &&
+            Array.isArray(jsonData[key])
+          ) {
             jsonData[key].forEach((course) => {
               newRolesArr.push(new Course(course.name, course.color));
             });
