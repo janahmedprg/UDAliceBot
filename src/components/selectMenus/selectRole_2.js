@@ -11,8 +11,9 @@ module.exports = {
 
     const clubs = jsonData["clubs"];
     var setRoles = currRole
-      .filter((role) => clubs.some((r) => r.name != role.name))
+      .filter((role) => !clubs.some((r) => r.name === role.name))
       .map((role) => role);
+    console.log(setRoles.map((role) => role.name));
     try {
       var newRoles = interaction.values.map((rname) =>
         interaction.message.guild.roles.cache.find(
