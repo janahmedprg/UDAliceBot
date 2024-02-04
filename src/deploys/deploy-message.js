@@ -38,8 +38,9 @@ const rest = new REST().setToken(token);
     }
 
     const mess = [
-      "Select your course(s): MATH 010 - MATH 450",
-      "Select your course(s): MATH 450 - MATH 688",
+      "Select your course(s): MATH 010 - MATH 308",
+      "Select your course(s): MATH 315 - MATH 650",
+      "Select your course(s): MATH 810 - MATH 888",
     ];
 
     const menuBuilders = chunkedOptions.map((options, index) => {
