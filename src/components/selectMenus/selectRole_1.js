@@ -9,7 +9,9 @@ module.exports = {
     const rawData = await fs.promises.readFile("src/roles.json", "utf8");
     const jsonData = JSON.parse(rawData);
 
-    const secondChunk = jsonData["classes"].slice(0, 26);
+    const secondChunk = jsonData["classes"]
+      .slice(0, 26)
+      .concat(jsonData["classes"].slice(50));
     var setRoles = currRole
       .filter((role) => secondChunk.some((r) => r.name === role.name))
       .map((role) => role);
