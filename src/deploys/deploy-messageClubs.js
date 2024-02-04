@@ -46,7 +46,7 @@ const rest = new REST().setToken(token);
     );
 
     const menuBuilder = new StringSelectMenuBuilder()
-      .setCustomId(`rolesSelect_2`)
+      .setCustomId(`rolesSelect_3`)
       .setPlaceholder("Select your club(s)")
       .setMinValues(0)
       .setMaxValues(options.length)

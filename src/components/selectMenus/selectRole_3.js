@@ -13,7 +13,6 @@ module.exports = {
     var setRoles = currRole
       .filter((role) => !clubs.some((r) => r.name === role.name))
       .map((role) => role);
-    console.log(setRoles.map((role) => role.name));
     try {
       var newRoles = interaction.values.map((rname) =>
         interaction.message.guild.roles.cache.find(
@@ -27,10 +26,14 @@ module.exports = {
       setRoles.push(role);
     });
     if (!newRoles) return;
-    interaction.member.roles.set(setRoles);
-    await interaction.reply({
-      content: "Your selected classes have been assigned to you!",
-      ephemeral: true,
-    });
+    try {
+      interaction.member.roles.set(setRoles);
+      await interaction.reply({
+        content: "Your selected clubs have been assigned to you!",
+        ephemeral: true,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
