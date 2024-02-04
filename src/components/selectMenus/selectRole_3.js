@@ -2,20 +2,18 @@ const fs = require("fs");
 
 module.exports = {
   data: {
-    name: `rolesSelect_2`,
+    name: `rolesSelect_3`,
   },
   async execute(interaction) {
     const currRole = interaction.member.roles.cache;
     const rawData = await fs.promises.readFile("src/roles.json", "utf8");
     const jsonData = JSON.parse(rawData);
 
-    const secondChunk = jsonData["classes"].slice(0, 51);
+    const clubs = jsonData["clubs"];
     var setRoles = currRole
-      .filter((role) => secondChunk.some((r) => r.name === role.name))
+      .filter((role) => !clubs.some((r) => r.name === role.name))
       .map((role) => role);
-    const filteredRoles = currRole.filter(
-      (role) => !role.name.includes("MATH")
-    );
+    console.log(setRoles.map((role) => role.name));
     try {
       var newRoles = interaction.values.map((rname) =>
         interaction.message.guild.roles.cache.find(
@@ -25,9 +23,6 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-    filteredRoles.forEach((role) => {
-      setRoles.push(role);
-    });
     newRoles.forEach((role) => {
       setRoles.push(role);
     });
